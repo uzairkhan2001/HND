@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Admin Panel | Dt Amna Transformation</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Jost:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/quill/1.3.7/quill.snow.min.css" />
+  <link rel="stylesheet" href="/admin/admin.css" />
+</head>
+<body>
+  <!-- Login / first-time setup -->
+  <div class="auth" id="auth" hidden>
+    <form class="auth__box" id="authForm">
+      <div class="auth__logo"><span>A</span></div>
+      <h1 id="authTitle">Admin login</h1>
+      <p id="authSub" class="muted">Sign in to manage your website.</p>
+      <label>Username<input name="username" required autocomplete="username" /></label>
+      <label>Password<input name="password" type="password" required autocomplete="current-password" minlength="8" /></label>
+      <label id="authConfirmWrap" hidden>Confirm password<input name="confirm" type="password" autocomplete="new-password" /></label>
+      <button class="btn btn--block" type="submit" id="authBtn">Log in</button>
+      <p class="auth__err" id="authErr" role="alert"></p>
+    </form>
+  </div>
+
+  <!-- App -->
+  <div class="app" id="app" hidden>
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar__brand"><span class="mark">A</span><div><strong>Dt Amna</strong><small>Admin panel</small></div></div>
+      <nav class="sidebar__nav">
+        <a href="#/analytics" data-nav="analytics"><i class="fa-solid fa-chart-line"></i> Analytics</a>
+        <a href="#/sections" data-nav="sections"><i class="fa-solid fa-layer-group"></i> Page sections</a>
+        <a href="#/blog" data-nav="blog"><i class="fa-solid fa-pen-nib"></i> Blog</a>
+        <a href="#/assessment" data-nav="assessment"><i class="fa-solid fa-clipboard-check"></i> Assessment</a>
+        <a href="#/media" data-nav="media"><i class="fa-regular fa-images"></i> Photos &amp; media</a>
+        <a href="#/leads" data-nav="leads"><i class="fa-regular fa-envelope"></i> Leads <span class="badge" id="leadBadge" hidden></span></a>
+        <a href="#/theme" data-nav="theme"><i class="fa-solid fa-palette"></i> Edit theme</a>
+        <a href="#/settings" data-nav="settings"><i class="fa-solid fa-gear"></i> Settings</a>
+      </nav>
+      <div class="sidebar__foot">
+        <a href="/" target="_blank" rel="noopener"><i class="fa-solid fa-arrow-up-right-from-square"></i> View website</a>
+        <button id="logoutBtn"><i class="fa-solid fa-right-from-bracket"></i> Log out</button>
+      </div>
+    </aside>
+    <div class="backdrop" id="backdrop"></div>
+    <div class="main">
+      <header class="topnav">
+        <button class="icon-btn menu-btn" id="menuBtn" aria-label="Menu"><i class="fa-solid fa-bars"></i></button>
+        <h1 id="pageTitle">Dashboard</h1>
+        <div id="pageActions" class="topnav__actions"></div>
+      </header>
+      <main class="content" id="view"></main>
+    </div>
+  </div>
+
+  <div class="toast" id="toast" role="status"></div>
+  <div class="modal" id="modal" hidden>
+    <div class="modal__box">
+      <header class="modal__head"><h3 id="modalTitle"></h3><button class="icon-btn" id="modalClose" aria-label="Close"><i class="fa-solid fa-xmark"></i></button></header>
+      <div class="modal__body" id="modalBody"></div>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/quill/1.3.7/quill.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.15.2/Sortable.min.js"></script>
+  <script src="/shared/schemas.js"></script>
+  <script src="/shared/theme.js"></script>
+  <script src="/admin/admin.js"></script>
+</body>
+</html>

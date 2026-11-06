@@ -1,0 +1,20 @@
+<section class="e-sec e-spread<%= d.imageSide === 'left' ? ' e-spread--left' : '' %><%= d.darkBg ? ' e-tint' : '' %>" id="<%= section.anchor %>">
+  <div class="e-wrap e-spread__grid">
+    <div class="e-spread__media">
+      <%- include('../partials/photo', { src: d.image, alt: d.highlight || d.title, ratio: '4/5', cls: '', parallax: true }) %>
+    </div>
+    <div class="e-spread__text">
+      <%- include('../partials/heading', { d, num }) %>
+      <% if (d.body) { %><p class="e-body"><%= d.body %></p><% } %>
+      <% if (d.bullets && d.bullets.length) { %>
+      <ul class="e-dash" data-stagger><% d.bullets.forEach(b => { %><li><%= b.text %></li><% }) %></ul>
+      <% } %>
+      <% if (d.features && d.features.length) { %>
+      <dl class="e-facts" data-stagger>
+        <% d.features.forEach(f => { %><div><dt><%= f.title %></dt><dd><%= f.text %></dd></div><% }) %>
+      </dl>
+      <% } %>
+      <% if (d.btnLabel) { %><div class="e-actions"><%- include('../partials/button', { label: d.btnLabel, url: d.btnUrl }) %></div><% } %>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,28 @@
+<% if (latestPosts.length) { const list = latestPosts.slice(0, d.count || 3); const lead = list[0]; %>
+<section class="e-sec e-journal" id="<%= section.anchor %>">
+  <div class="e-wrap">
+    <div class="e-head e-head--split">
+      <div><%- include('../partials/heading', { d, num }) %></div>
+      <% if (d.intro) { %><p class="e-head__intro"><%= d.intro %></p><% } %>
+    </div>
+    <div class="e-journal__grid">
+      <a class="e-story e-story--lead" href="<%= link('/blog/' + lead.slug) %>" data-track="Blog card: <%= lead.title %>">
+        <%- include('../partials/photo', { src: lead.cover, alt: lead.title, ratio: '16/11', cls: '' }) %>
+        <p class="e-label"><%= fmtDate(lead.publishedAt) %><% if (lead.tags) { %> · <%= lead.tags.split(',')[0].trim() %><% } %></p>
+        <h3><%= lead.title %></h3>
+        <p><%= lead.excerpt %></p>
+      </a>
+      <% if (list.length > 1) { %>
+      <ol class="e-journal__list" data-stagger>
+        <% list.slice(1).forEach(p => { %>
+        <li><a class="e-story" href="<%= link('/blog/' + p.slug) %>" data-track="Blog card: <%= p.title %>">
+          <p class="e-label"><%= fmtDate(p.publishedAt) %></p><h3><%= p.title %></h3><p><%= p.excerpt %></p>
+        </a></li>
+        <% }) %>
+      </ol>
+      <% } %>
+    </div>
+    <div class="e-more"><a href="<%= link('/blog') %>" class="e-link">All articles <span aria-hidden="true">→</span></a></div>
+  </div>
+</section>
+<% } %>

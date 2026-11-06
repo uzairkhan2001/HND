@@ -1,0 +1,25 @@
+{
+  "name": "dt-amna-transformation",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Dt Amna Transformation website with admin panel, blog and analytics",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "engines": {
+    "node": "24.x"
+  },
+  "dependencies": {
+    "@neondatabase/serverless": "^1.2.0",
+    "@vercel/blob": "^2.8.2",
+    "ejs": "^3.1.10",
+    "express": "^4.21.2",
+    "multer": "^2.0.2",
+    "xss": "^1.0.15"
+  },
+  "devDependencies": {
+    "@electric-sql/pglite": "^0.5.10"
+  },
+  "main": "server.js"
+}

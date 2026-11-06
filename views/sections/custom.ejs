@@ -1,0 +1,10 @@
+<section class="e-sec e-custom<%= d.darkBg ? ' e-tint' : '' %>" id="<%= section.anchor %>">
+  <div class="e-wrap <%= d.image ? 'e-spread__grid' : 'e-custom__col' %>">
+    <% if (d.image) { %><div class="e-spread__media"><%- include('../partials/photo', { src: d.image, alt: d.title, ratio: '4/5', cls: '', parallax: true }) %></div><% } %>
+    <div class="e-spread__text">
+      <%- include('../partials/heading', { d, num }) %>
+      <div class="e-rich"><%- d.body %></div>
+      <% if (d.btnLabel) { %><div class="e-actions"><%- include('../partials/button', { label: d.btnLabel, url: d.btnUrl }) %></div><% } %>
+    </div>
+  </div>
+</section>

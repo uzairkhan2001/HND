@@ -1,0 +1,8 @@
+<%# A photo, or — until one is uploaded — a quiet blush panel with a caption. Args: src, alt, ratio (css), cls, parallax %>
+<figure class="e-photo<%= typeof cls !== 'undefined' && cls ? ' ' + cls : '' %>" style="--ratio:<%= typeof ratio !== 'undefined' && ratio ? ratio : '4/5' %>">
+  <% if (src) { %>
+    <img src="<%= src %>" alt="<%= alt || '' %>" loading="lazy" data-photo<%- typeof parallax !== 'undefined' && parallax ? ' data-parallax' : '' %> />
+  <% } else { %>
+    <div class="e-photo__empty" data-photo role="img" aria-label="<%= alt || 'Photo' %> (not added yet)"><span>Photo to come<br /><small>Add it in the admin panel</small></span></div>
+  <% } %>
+</figure>

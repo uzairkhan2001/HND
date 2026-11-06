@@ -1,0 +1,13 @@
+<div class="bmi-result" hidden aria-live="polite">
+  <div class="bmi-result__top">
+    <strong class="bmi-result__value" data-cal-target>0</strong>
+    <span class="bmi-result__cat" data-cal-goal>kcal / day</span>
+  </div>
+  <ul class="cal-plan">
+    <li><span>Lose weight</span><strong data-cal-lose></strong></li>
+    <li><span>Maintain weight</span><strong data-cal-maintain></strong></li>
+    <li><span>Gain weight</span><strong data-cal-gain></strong></li>
+  </ul>
+  <p class="bmi-result__range">Your body burns about <b data-cal-bmr></b> kcal a day at rest. This is an estimate, not medical advice.</p>
+  <%- include(btnPartial, { label: d.btnLabel, url: d.btnUrl, cls: btnCls }) %>
+</div>

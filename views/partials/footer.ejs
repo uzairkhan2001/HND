@@ -1,0 +1,50 @@
+<% const ftel = settings.whatsapp ? 'https://wa.me/' + String(settings.whatsapp).replace(/\D/g, '') : (settings.phone ? 'tel:' + String(settings.phone).replace(/[^\d+]/g, '') : ''); %>
+<footer class="e-footer">
+  <div class="e-wrap">
+    <div class="e-footer__top">
+      <p class="e-footer__lede"><%= settings.footerText %></p>
+      <% if (settings.navCtaLabel) { %><a href="<%= link(settings.navCtaUrl) %>"<%- ext(settings.navCtaUrl) %> class="e-btn e-btn--blush" data-track="Footer: <%= settings.navCtaLabel %>"><%= settings.navCtaLabel %> <span aria-hidden="true">→</span></a><% } %>
+    </div>
+    <div class="e-footer__cols">
+      <div>
+        <p class="e-label">Explore</p>
+        <ul>
+          <% navLinks.slice(0, 6).forEach(l => { %><li><a href="<%= l.href %>"><%= l.label %></a></li><% }) %>
+          <li><a href="<%= link('/assessment') %>">Free assessment</a></li>
+          <li><a href="<%= link('/blog') %>">Journal</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="e-label">Contact</p>
+        <ul>
+          <% if (settings.phone) { %><li><a href="<%= ftel %>" data-track="Phone / WhatsApp (footer)"><%= settings.phone %></a></li><% } %>
+          <% if (settings.email) { %><li><a href="mailto:<%= settings.email %>" data-track="Email (footer)"><%= settings.email %></a></li><% } %>
+          <% if (safeUrl(settings.calendly)) { %><li><a href="<%= safeUrl(settings.calendly) %>" target="_blank" rel="noopener" data-track="Booking link (footer)">Book online</a></li><% } %>
+        </ul>
+      </div>
+      <div>
+        <p class="e-label">Follow</p>
+        <ul>
+          <% [['instagram', 'Instagram'], ['facebook', 'Facebook'], ['tiktok', 'TikTok'], ['youtube', 'YouTube']].forEach(([k, name]) => { if (safeUrl(settings[k])) { %>
+            <li><a href="<%= safeUrl(settings[k]) %>" target="_blank" rel="noopener" data-track="<%= name %> (footer)"><%= name %> <span aria-hidden="true">↗</span></a></li>
+          <% } }) %>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <p class="e-footer__giant" aria-hidden="true"><span><%= settings.brandName %></span> <em><%= settings.brandSub %></em></p>
+  <div class="e-wrap e-footer__base">
+    <span>© <%= new Date().getFullYear() %> <%= settings.brandName %> <%= settings.brandSub %></span>
+    <span>All rights reserved</span>
+  </div>
+</footer>
+
+<script src="/shared/bmi.js"></script>
+<script src="/shared/calorie.js"></script>
+<script src="/js/track.js"></script>
+<script src="/js/main.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js" integrity="sha384-B2WBjDzEjJpYvhmi2UyEn7rektqkf5suS6sNoyyrf0EBAwBHdkiXxIlU0V5Ru2ed" crossorigin="anonymous"></script>
+<script src="/js/slider.js"></script>
+<script src="/js/motion.js"></script>
+</body>
+</html>

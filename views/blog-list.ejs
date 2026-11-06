@@ -1,0 +1,33 @@
+<%- include('partials/head', { title: 'Journal', description: 'Nutrition tips, recipes and fat-loss advice for women from ' + settings.brandName + ' ' + settings.brandSub + '.' }) %>
+<%- include('partials/header') %>
+<main id="main">
+  <header class="e-pagehead">
+    <div class="e-wrap">
+      <p class="e-label">The Journal</p>
+      <h1 class="e-pagehead__title">Notes on food, <em>hormones</em> &amp; habits</h1>
+    </div>
+  </header>
+  <section class="e-sec e-sec--tight">
+    <div class="e-wrap">
+      <% if (posts.length) { %>
+      <ol class="e-archive" data-stagger>
+        <% posts.forEach((p, i) => { %>
+        <li><a class="e-archive__item" href="<%= link('/blog/' + p.slug) %>" data-track="Blog card: <%= p.title %>">
+          <span class="e-archive__n"><%= String(i + 1).padStart(2, '0') %></span>
+          <div class="e-archive__media"><%- include('partials/photo', { src: p.cover, alt: p.title, ratio: '4/3', cls: '' }) %></div>
+          <div class="e-archive__text">
+            <p class="e-label"><%= fmtDate(p.publishedAt) %><% if (p.tags) { %> · <%= p.tags.split(',')[0].trim() %><% } %></p>
+            <h2><%= p.title %></h2>
+            <p><%= p.excerpt %></p>
+          </div>
+          <span class="e-archive__go" aria-hidden="true">Read →</span>
+        </a></li>
+        <% }) %>
+      </ol>
+      <% } else { %>
+        <p class="e-body">The first article is on its way.</p>
+      <% } %>
+    </div>
+  </section>
+</main>
+<%- include('partials/footer') %>

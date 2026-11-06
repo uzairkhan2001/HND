@@ -1,0 +1,36 @@
+<% if (isAdmin) { %>
+  <div class="e-adminbar">Admin<span class="hide-sm"> — your visits aren't counted</span>. <a href="/admin">Admin panel</a></div>
+<% } %>
+<% const tel = settings.whatsapp ? 'https://wa.me/' + String(settings.whatsapp).replace(/\D/g, '') : (settings.phone ? 'tel:' + String(settings.phone).replace(/[^\d+]/g, '') : ''); %>
+<header class="e-header" id="header">
+  <div class="e-wrap e-header__inner">
+    <a href="<%= home %>" class="e-mark" aria-label="<%= settings.brandName %> <%= settings.brandSub %> — home">
+      <% if (settings.logoImage) { %><img src="<%= settings.logoImage %>" alt="" /><% } %>
+      <span class="e-mark__name"><%= settings.brandName %></span>
+      <span class="e-mark__sub"><%= settings.brandSub %></span>
+    </a>
+
+    <nav class="e-nav" id="nav" aria-label="Main">
+      <ol class="e-nav__list">
+        <% navLinks.forEach((l, i) => { %>
+          <li><a href="<%= l.href %>"><span class="e-nav__n"><%= String(i + 1).padStart(2, '0') %></span><%= l.label %></a></li>
+        <% }) %>
+        <% if (page !== 'home' && !navLinks.some(l => /^blog$/i.test(l.label))) { %>
+          <li><a href="<%= link('/blog') %>"<%- page === 'blog' || page === 'post' ? ' aria-current="page"' : '' %>><span class="e-nav__n"><%= String(navLinks.length + 1).padStart(2, '0') %></span>Journal</a></li>
+        <% } %>
+      </ol>
+      <div class="e-nav__actions">
+        <% if (settings.assessmentLabel && page !== 'assessment') { %><a href="<%= link('/assessment') %>" class="e-link" data-track="Header: <%= settings.assessmentLabel %>"><%= settings.assessmentLabel %></a><% } %>
+        <% if (settings.navCtaLabel) { %><a href="<%= link(settings.navCtaUrl) %>"<%- ext(settings.navCtaUrl) %> class="e-btn e-btn--sm" data-track="Header button: <%= settings.navCtaLabel %>"><%= settings.navCtaLabel %></a><% } %>
+      </div>
+      <div class="e-nav__foot">
+        <% if (settings.phone) { %><a href="<%= tel %>"><%= settings.phone %></a><% } %>
+        <% if (safeUrl(settings.instagram)) { %><a href="<%= safeUrl(settings.instagram) %>" target="_blank" rel="noopener">Instagram</a><% } %>
+      </div>
+    </nav>
+
+    <button class="e-menu" id="navToggle" aria-label="Open menu" aria-expanded="false" aria-controls="nav">
+      <span class="e-menu__label">Menu</span><span class="e-menu__bars" aria-hidden="true"><i></i><i></i></span>
+    </button>
+  </div>
+</header>

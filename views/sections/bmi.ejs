@@ -1,0 +1,58 @@
+<section class="e-sec e-bmi<%= d.darkBg ? ' e-plum' : '' %>" id="<%= section.anchor %>">
+  <div class="e-wrap e-bmi__grid">
+    <div class="e-bmi__text">
+      <%- include('../partials/heading', { d, num }) %>
+      <% if (d.intro) { %><p class="e-body"><%= d.intro %></p><% } %>
+      <table class="e-bmi__table">
+        <caption class="e-label">BMI ranges for adults</caption>
+        <tbody>
+          <tr><th scope="row">Under 18.5</th><td>Underweight</td></tr>
+          <tr><th scope="row">18.5 – 24.9</th><td>Healthy weight</td></tr>
+          <tr><th scope="row">25 – 29.9</th><td>Overweight</td></tr>
+          <tr><th scope="row">30 and above</th><td>Obese</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <form class="e-calc bmi-card" data-bmi data-no-track novalidate>
+      <p class="e-label">Calculator</p>
+      <div class="bmi-row">
+        <span class="bmi-label">Height</span>
+        <div class="unit-toggle" role="group" aria-label="Height unit">
+          <button type="button" class="active" data-height-unit="ft">ft / in</button>
+          <button type="button" data-height-unit="cm">cm</button>
+        </div>
+      </div>
+      <div class="bmi-inputs" data-height="ft">
+        <label><input type="number" name="ft" min="3" max="8" inputmode="numeric" placeholder="5" aria-label="Feet" /><span>ft</span></label>
+        <label><input type="number" name="inch" min="0" max="11" inputmode="numeric" placeholder="4" aria-label="Inches" /><span>in</span></label>
+      </div>
+      <div class="bmi-inputs" data-height="cm" hidden>
+        <label><input type="number" name="cm" min="100" max="250" inputmode="decimal" placeholder="163" aria-label="Centimetres" /><span>cm</span></label>
+      </div>
+      <div class="bmi-row">
+        <span class="bmi-label">Weight</span>
+        <div class="unit-toggle" role="group" aria-label="Weight unit">
+          <button type="button" class="active" data-weight-unit="kg">kg</button>
+          <button type="button" data-weight-unit="lbs">lbs</button>
+        </div>
+      </div>
+      <div class="bmi-inputs">
+        <label><input type="number" name="weight" min="25" max="660" inputmode="decimal" placeholder="70" aria-label="Weight" /><span data-weight-label>kg</span></label>
+      </div>
+      <button type="submit" class="e-btn">Calculate <span aria-hidden="true">→</span></button>
+      <p class="bmi-error" role="alert"></p>
+
+      <div class="bmi-result" hidden aria-live="polite">
+        <div class="bmi-result__top">
+          <strong class="bmi-result__value">0</strong>
+          <span class="bmi-result__cat">—</span>
+        </div>
+        <div class="bmi-gauge"><span class="bmi-gauge__marker"></span></div>
+        <div class="bmi-gauge__ticks"><span>15</span><span>18.5</span><span>25</span><span>30</span><span>40</span></div>
+        <p class="bmi-result__range"></p>
+        <%- include('../partials/button', { label: d.btnLabel, url: d.btnUrl, cls: 'e-link' }) %>
+      </div>
+    </form>
+  </div>
+</section>

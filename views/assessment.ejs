@@ -1,0 +1,55 @@
+<%- include('partials/head') %>
+<% const bookUrl = safeUrl(assessment.resultBtnUrl) || safeUrl(settings.calendly) || link('/#contact'); %>
+<div class="assess-page">
+  <header class="assess-head e-wrap">
+    <a href="<%= home %>" class="e-mark"><span class="e-mark__name"><%= settings.brandName %></span><span class="e-mark__sub"><%= settings.brandSub %></span></a>
+    <a href="<%= home %>" class="e-link assess-head__back"><span aria-hidden="true">←</span> Back<span class="hide-sm"> to website</span></a>
+  </header>
+
+  <main class="assess-main" id="main">
+    <div class="assess-card" id="assess" aria-live="polite" data-no-track>
+      <section class="assess-step assess-intro is-active" data-step="intro">
+        <p class="e-label">Free assessment</p>
+        <h1><%= assessment.introTitle %></h1>
+        <p class="assess-sub"><%= assessment.introText %></p>
+        <ul class="assess-intro__points">
+          <li>About a minute</li>
+          <li>Your BMI, instantly</li>
+          <li>Private &amp; free</li>
+        </ul>
+      </section>
+    </div>
+
+    <div class="assess-nav" id="assessNav" data-no-track>
+      <button type="button" class="assess-nav__prev" id="assessPrev" hidden><span aria-hidden="true">←</span> Previous</button>
+      <button type="button" class="assess-nav__next" id="assessNext"><span><%= assessment.startLabel || 'Start' %></span> <i aria-hidden="true">→</i></button>
+    </div>
+    <p class="assess-error" id="assessError" role="alert"></p>
+
+    <div class="assess-progress" id="assessProgress" hidden>
+      <div class="assess-progress__bar"><span id="assessBar"></span></div>
+      <p id="assessCount">1 of 6</p>
+    </div>
+  </main>
+</div>
+
+<script type="application/json" id="assessConfig"><%- JSON.stringify({
+  questions: assessment.questions || [],
+  bodyStepAfter: assessment.bodyStepAfter || 0,
+  contactTitle: assessment.contactTitle,
+  contactText: assessment.contactText,
+  emailRequired: !!assessment.emailRequired,
+  consentText: assessment.consentText,
+  resultTitle: assessment.resultTitle,
+  resultBtnLabel: assessment.resultBtnLabel || 'Book My Consultation',
+  bookUrl,
+  home,
+  plainIcons: true,
+  whatsapp: settings.whatsapp ? 'https://wa.me/' + String(settings.whatsapp).replace(/\D/g, '') : '',
+  instagram: safeUrl(settings.instagram)
+}).replace(/</g, '\\u003c') %></script>
+<script src="/shared/bmi.js"></script>
+<script src="/js/track.js"></script>
+<script src="/js/assessment.js"></script>
+</body>
+</html>

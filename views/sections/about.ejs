@@ -1,0 +1,18 @@
+<section class="e-sec e-about" id="<%= section.anchor %>">
+  <div class="e-wrap e-about__grid">
+    <div class="e-about__media">
+      <%- include('../partials/photo', { src: d.image, alt: d.highlight || settings.brandName, ratio: '3/4', cls: '', parallax: true }) %>
+      <% if (d.badgeTitle) { %><p class="e-caption"><strong><%= d.badgeTitle %></strong> — <%= d.badgeText %></p><% } %>
+    </div>
+    <div class="e-about__text">
+      <%- include('../partials/heading', { d, num }) %>
+      <div class="e-rich e-dropcap"><%- d.body %></div>
+      <% if (d.bullets && d.bullets.length) { %>
+      <ol class="e-list" data-stagger>
+        <% d.bullets.forEach((b, i) => { %><li><span><%= String(i + 1).padStart(2, '0') %></span><%= b.text %></li><% }) %>
+      </ol>
+      <% } %>
+      <%- include('../partials/button', { label: d.btnLabel, url: d.btnUrl }) %>
+    </div>
+  </div>
+</section>

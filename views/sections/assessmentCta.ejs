@@ -1,0 +1,13 @@
+<% const pts = String(d.points || '').split(/\r?\n/).map(x => x.trim()).filter(Boolean); const secs = (String(d.eyebrow || '') + ' ' + String(d.text || '')).match(/(\d+)[\s-]*sec/i); %>
+<section class="e-feature" id="<%= section.anchor %>">
+  <div class="e-wrap e-feature__grid">
+    <p class="e-feature__big" aria-hidden="true"><% if (secs) { %><%= secs[1] %><em>s</em><% } else { %><em>Free</em><% } %></p>
+    <div class="e-feature__text">
+      <% if (d.eyebrow) { %><p class="e-label"><%= d.eyebrow %></p><% } %>
+      <h2 class="e-display"><%= d.title %><% if (d.highlight) { %> <em><%= d.highlight %></em><% } %></h2>
+      <% if (d.text) { %><p class="e-body"><%= d.text %></p><% } %>
+      <% if (pts.length) { %><ul class="e-feature__pts" data-stagger><% pts.forEach(p => { %><li><%= p %></li><% }) %></ul><% } %>
+      <%- include('../partials/button', { label: d.btnLabel, url: d.btnUrl, cls: 'e-btn e-btn--blush' }) %>
+    </div>
+  </div>
+</section>

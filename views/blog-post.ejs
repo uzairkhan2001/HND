@@ -1,0 +1,31 @@
+<%- include('partials/head', { title: post.title, description: post.excerpt, ogImage: post.cover }) %>
+<%- include('partials/header') %>
+<% if (post.status !== 'published') { %><div class="e-adminbar">Draft preview — only you can see this post.</div><% } %>
+<main id="main">
+  <article class="e-article">
+    <header class="e-article__head e-wrap">
+      <a href="<%= link('/blog') %>" class="e-link e-link--back"><span aria-hidden="true">←</span> The Journal</a>
+      <p class="e-label"><%= fmtDate(post.publishedAt || post.createdAt) %><% if (post.tags) { %> · <%= post.tags %><% } %></p>
+      <h1 class="e-article__title"><%= post.title %></h1>
+      <% if (post.excerpt) { %><p class="e-article__dek"><%= post.excerpt %></p><% } %>
+    </header>
+    <% if (post.cover) { %><div class="e-article__cover"><img src="<%= post.cover %>" alt="<%= post.title %>" data-photo /></div><% } %>
+    <div class="e-article__body e-rich e-dropcap post__content"><%- post.content %></div>
+    <aside class="e-article__end e-wrap">
+      <p class="e-label">Work with Dt Amna</p>
+      <p class="e-article__endline">Want a plan built around <em>your</em> body and routine?</p>
+      <a href="<%= link('/#contact') %>" class="e-btn" data-track="Blog post CTA: <%= post.title %>">Book a consultation <span aria-hidden="true">→</span></a>
+    </aside>
+  </article>
+  <% if (more.length) { %>
+  <section class="e-sec e-sec--tight e-tint">
+    <div class="e-wrap">
+      <p class="e-label">Keep reading</p>
+      <ol class="e-journal__list e-journal__list--row" data-stagger>
+        <% more.forEach(p => { %><li><a class="e-story" href="<%= link('/blog/' + p.slug) %>"><p class="e-label"><%= fmtDate(p.publishedAt) %></p><h3><%= p.title %></h3><p><%= p.excerpt %></p></a></li><% }) %>
+      </ol>
+    </div>
+  </section>
+  <% } %>
+</main>
+<%- include('partials/footer') %>

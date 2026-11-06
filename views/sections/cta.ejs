@@ -1,0 +1,9 @@
+<section class="e-cta" id="<%= section.anchor %>">
+  <div class="e-wrap e-cta__inner">
+    <h2 class="e-cta__title"><%= d.title %><% if (d.highlight) { %> <em><%= d.highlight %></em><% } %></h2>
+    <div class="e-cta__side">
+      <% if (d.text) { %><p><%= d.text %></p><% } %>
+      <%- include('../partials/button', { label: d.btnLabel, url: d.btnUrl, cls: 'e-btn e-btn--blush' }) %>
+    </div>
+  </div>
+</section>

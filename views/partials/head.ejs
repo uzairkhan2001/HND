@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" class="ed">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title><%= typeof title !== 'undefined' && title ? title + ' — ' + settings.brandName + ' ' + settings.brandSub : settings.seoTitle %></title>
+  <meta name="description" content="<%= typeof description !== 'undefined' && description ? description : settings.seoDescription %>" />
+  <meta property="og:title" content="<%= typeof title !== 'undefined' && title ? title : settings.seoTitle %>" />
+  <meta property="og:description" content="<%= typeof description !== 'undefined' && description ? description : settings.seoDescription %>" />
+  <% if (typeof ogImage !== 'undefined' && ogImage) { %><meta property="og:image" content="<%= ogImage %>" /><% } %>
+  <meta name="theme-color" content="<%= settings.themePaper || '#f6ece8' %>" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="<%= fontsHref %>" rel="stylesheet" />
+  <link rel="stylesheet" href="/css/editorial.css" />
+  <style><%- themeCss %></style>
+  <script>
+    if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      document.documentElement.classList.add('motion-on');
+      setTimeout(function () { if (!window.__motionReady) { document.documentElement.classList.remove('motion-on'); document.body && document.body.classList.add('is-loaded'); var i = document.getElementById('intro'); if (i) i.remove(); } }, 4000);
+    }
+  </script>
+</head>
+<body data-page="<%= page %>"<% if (typeof post !== 'undefined' && post) { %> data-post="<%= post.slug %>"<% } %>>
+<% if (page === 'home') { %>
+<div class="intro" id="intro" aria-hidden="true">
+  <p class="intro__kicker">Nutrition &amp; fat loss for women</p>
+  <div class="intro__name">
+    <span class="intro__word"><span><%= settings.brandName %></span></span>
+    <span class="intro__word intro__word--it"><span><%= settings.brandSub %></span></span>
+  </div>
+  <span class="intro__rule"></span>
+</div>
+<script>
+  (function () {
+    var seen = false; try { seen = sessionStorage.getItem('dta_intro'); } catch (e) {}
+    if (seen || matchMedia('(prefers-reduced-motion: reduce)').matches) document.getElementById('intro').remove();
+  })();
+</script>
+<% } %>
+<a class="skip" href="#main">Skip to content</a>

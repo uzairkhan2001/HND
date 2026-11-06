@@ -1,0 +1,9 @@
+<%- include('partials/head') %>
+<%- include('partials/header') %>
+<main id="main">
+<% let num = 0; const numbered = ['about', 'cards', 'steps', 'gallery', 'split', 'blog', 'faq', 'contact', 'custom', 'bmi', 'calorie']; %>
+<% sections.forEach(section => { const d = section.data; if (numbered.includes(section.type)) num++; %>
+  <%- include('sections/' + section.type, { section, d, num }) %>
+<% }) %>
+</main>
+<%- include('partials/footer') %>

@@ -1,0 +1,40 @@
+<% const tel = settings.whatsapp ? 'https://wa.me/' + String(settings.whatsapp).replace(/\D/g, '') : 'tel:' + String(settings.phone || '').replace(/[^\d+]/g, ''); %>
+<section class="e-sec e-contact" id="<%= section.anchor %>">
+  <div class="e-wrap e-contact__grid">
+    <div class="e-contact__info">
+      <%- include('../partials/heading', { d, num }) %>
+      <% if (d.text) { %><p class="e-body"><%= d.text %></p><% } %>
+      <dl class="e-contact__list">
+        <% if (safeUrl(settings.calendly)) { %><div><dt>Book</dt><dd><a href="<%= safeUrl(settings.calendly) %>" target="_blank" rel="noopener" data-track="Booking link (contact)">Choose a time online ↗</a></dd></div><% } %>
+        <% if (settings.phone) { %><div><dt>WhatsApp</dt><dd><a href="<%= tel %>"<%- settings.whatsapp ? ' target="_blank" rel="noopener"' : '' %> data-track="Phone / WhatsApp (contact)"><%= settings.phone %></a></dd></div><% } %>
+        <% if (settings.email) { %><div><dt>Email</dt><dd><a href="mailto:<%= settings.email %>" data-track="Email (contact)"><%= settings.email %></a></dd></div><% } %>
+        <% if (safeUrl(settings.instagram)) { %><div><dt>Instagram</dt><dd><a href="<%= safeUrl(settings.instagram) %>" target="_blank" rel="noopener" data-track="Instagram (contact)">Send a DM ↗</a></dd></div><% } %>
+      </dl>
+    </div>
+    <form class="e-form" id="contactForm" novalidate>
+      <div class="e-form__row">
+        <label class="e-field"><span>First name</span><input type="text" name="first" required autocomplete="given-name" /></label>
+        <label class="e-field"><span>Last name</span><input type="text" name="last" autocomplete="family-name" /></label>
+      </div>
+      <div class="e-form__row">
+        <label class="e-field"><span>Email</span><input type="email" name="email" required autocomplete="email" /></label>
+        <label class="e-field"><span>Phone / WhatsApp</span><input type="tel" name="phone" required autocomplete="tel" /></label>
+      </div>
+      <div class="e-form__row">
+        <label class="e-field"><span>Country</span>
+          <select name="country"><% ['Pakistan', 'United Arab Emirates', 'Saudi Arabia', 'United Kingdom', 'United States', 'Canada', 'Qatar', 'Oman', 'Other'].forEach(c => { %><option><%= c %></option><% }) %></select>
+        </label>
+        <label class="e-field"><span>Program</span>
+          <select name="program"><% String(d.programs || '').split(/\r?\n/).map(x => x.trim()).filter(Boolean).forEach(p => { %><option><%= p %></option><% }) %></select>
+        </label>
+      </div>
+      <label class="e-field"><span>Medical condition, if any</span><input type="text" name="medical" placeholder="PCOS, thyroid, diabetes…" /></label>
+      <label class="e-field"><span>Message</span><textarea name="message" rows="3"></textarea></label>
+      <label class="hp" aria-hidden="true">Website<input type="text" name="website" tabindex="-1" autocomplete="off" /></label>
+      <div class="e-form__end">
+        <button type="submit" class="e-btn"><%= d.buttonLabel || 'Send' %> <span aria-hidden="true">→</span></button>
+        <p class="form__note" id="formNote" role="status"></p>
+      </div>
+    </form>
+  </div>
+</section>

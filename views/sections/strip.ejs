@@ -1,0 +1,9 @@
+<% const phrase = [d.text, d.highlight].filter(Boolean).join(' '); %>
+<section class="e-marquee" id="<%= section.anchor %>" aria-label="<%= phrase %>">
+  <div class="e-marquee__track" aria-hidden="true">
+    <% for (let i = 0; i < 4; i++) { %>
+      <span><%= d.text %> <em><%= d.highlight %></em></span><span class="e-marquee__dot">●</span>
+    <% } %>
+  </div>
+  <% if (d.sub) { %><p class="e-marquee__sub"><%= d.sub %></p><% } %>
+</section>

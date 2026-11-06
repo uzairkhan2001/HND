@@ -1,0 +1,6 @@
+data
+public/uploads/*
+!public/uploads/.gitkeep
+.claude
+.env*
+.vercel

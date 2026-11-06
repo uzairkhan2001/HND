@@ -1,0 +1,24 @@
+<section class="e-sec e-index" id="<%= section.anchor %>">
+  <div class="e-wrap">
+    <div class="e-head e-head--split">
+      <div><%- include('../partials/heading', { d, num }) %></div>
+      <% if (d.intro) { %><p class="e-head__intro"><%= d.intro %></p><% } %>
+    </div>
+    <ol class="e-index__list" data-stagger>
+      <% (d.items || []).forEach((c, i) => { const bl = String(c.bullets || '').split(/\r?\n/).map(x => x.trim()).filter(Boolean); const href = c.linkLabel ? link(c.linkUrl) : ''; %>
+      <li class="e-index__item<%= c.featured ? ' is-featured' : '' %>">
+        <span class="e-index__n"><%= String(i + 1).padStart(2, '0') %></span>
+        <h3 class="e-index__title">
+          <% if (href) { %><a href="<%= href %>"<%- ext(c.linkUrl) %> data-track="<%= c.title %>: <%= c.linkLabel %>"><%= c.title %></a><% } else { %><%= c.title %><% } %>
+          <% if (c.tag) { %><span class="e-tag"><%= c.tag %></span><% } %>
+        </h3>
+        <div class="e-index__body">
+          <p><%= c.text %></p>
+          <% if (bl.length) { %><p class="e-index__incl"><%= bl.join(' · ') %></p><% } %>
+        </div>
+        <% if (href) { %><span class="e-index__go" aria-hidden="true"><%= c.linkLabel %> →</span><% } %>
+      </li>
+      <% }) %>
+    </ol>
+  </div>
+</section>

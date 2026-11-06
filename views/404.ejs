@@ -1,0 +1,13 @@
+<%- include('partials/head', { title: 'Page not found' }) %>
+<%- include('partials/header') %>
+<main id="main">
+  <header class="e-pagehead e-pagehead--404">
+    <div class="e-wrap">
+      <p class="e-label">Error 404</p>
+      <h1 class="e-pagehead__title">This page has <em>moved on</em></h1>
+      <p class="e-body">The link may be old, or the page no longer exists.</p>
+      <a href="<%= home %>" class="e-btn">Back to the home page <span aria-hidden="true">→</span></a>
+    </div>
+  </header>
+</main>
+<%- include('partials/footer') %>

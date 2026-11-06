@@ -1,0 +1,20 @@
+<section class="e-sec e-results" id="<%= section.anchor %>">
+  <div class="e-wrap">
+    <div class="e-head e-head--split">
+      <div><%- include('../partials/heading', { d, num }) %></div>
+      <% if (d.intro) { %><p class="e-head__intro"><%= d.intro %></p><% } %>
+    </div>
+    <div class="e-results__grid" data-stagger>
+      <% (d.items || []).forEach((t, i) => { %>
+      <figure class="e-result<%= i === 0 ? ' e-result--lead' : '' %>">
+        <div class="e-result__pair">
+          <div><%- include('../partials/photo', { src: t.before, alt: t.name + ' before', ratio: '3/4', cls: '' }) %><span class="e-result__tag">Before</span></div>
+          <div><%- include('../partials/photo', { src: t.after, alt: t.name + ' after', ratio: '3/4', cls: '' }) %><span class="e-result__tag">After</span></div>
+        </div>
+        <figcaption><span class="e-result__name"><%= t.name %></span><em><%= t.result %></em></figcaption>
+      </figure>
+      <% }) %>
+    </div>
+    <% if (d.btnLabel) { %><div class="e-more"><%- include('../partials/button', { label: d.btnLabel, url: d.btnUrl, cls: 'e-link' }) %></div><% } %>
+  </div>
+</section>

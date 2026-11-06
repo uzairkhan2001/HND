@@ -1,0 +1,25 @@
+<section class="e-sec e-bmi<%= d.darkBg ? ' e-plum' : '' %>" id="<%= section.anchor %>">
+  <div class="e-wrap e-bmi__grid">
+    <div class="e-bmi__text">
+      <%- include('../partials/heading', { d, num }) %>
+      <% if (d.intro) { %><p class="e-body"><%= d.intro %></p><% } %>
+      <table class="e-bmi__table">
+        <caption class="e-label">How active are you?</caption>
+        <tbody>
+          <tr><th scope="row">Sedentary</th><td>Desk job, little exercise</td></tr>
+          <tr><th scope="row">Lightly active</th><td>Exercise 1–3 days a week</td></tr>
+          <tr><th scope="row">Moderately active</th><td>Exercise 3–5 days a week</td></tr>
+          <tr><th scope="row">Very active</th><td>Hard exercise 6–7 days a week</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <form class="e-calc bmi-card" data-calorie data-no-track novalidate>
+      <p class="e-label">Calculator</p>
+      <%- include('../partials/calorie-fields') %>
+      <button type="submit" class="e-btn">Calculate <span aria-hidden="true">→</span></button>
+      <p class="bmi-error" role="alert"></p>
+      <%- include('../partials/calorie-result', { d, btnPartial: 'button', btnCls: 'e-link' }) %>
+    </form>
+  </div>
+</section>

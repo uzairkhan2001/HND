@@ -1,0 +1,6 @@
+<%# Section opener: number + label on a rule, then the display headline. Args: d, num %>
+<div class="e-kicker">
+  <% if (typeof num !== 'undefined' && num) { %><span class="e-kicker__n"><%= String(num).padStart(2, '0') %></span><% } %>
+  <% if (d.eyebrow) { %><span class="e-kicker__t"><%= d.eyebrow %></span><% } %>
+</div>
+<% if (d.title || d.highlight) { %><h2 class="e-display"><%= d.title %><% if (d.highlight) { %> <em><%= d.highlight %></em><% } %></h2><% } %>

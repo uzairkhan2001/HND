@@ -1,0 +1,53 @@
+<section class="e-hero<%= d.image ? '' : ' e-hero--noimg' %>" id="<%= section.anchor %>" style="--slide-time: <%= Math.min(Math.max(Number(d.slideSeconds) || 6, 3), 20) %>s">
+<%
+  // Slide 1 = the main photo, then any extra slider photos
+  const FOCUS = { center: 'center 25%', top: 'center top', bottom: 'center bottom', left: 'left center', right: 'right center' };
+  const slides = [];
+  if (d.image) slides.push({ image: d.image, focus: d.focus });
+  (d.slides || []).forEach(s => { if (s.image) slides.push(s); });
+  const secs = Math.min(Math.max(Number(d.slideSeconds) || 6, 3), 20);
+%>
+  <div class="e-hero__media"<%- slides.length > 1 ? ` data-slider data-interval="${secs}"` : '' %>>
+    <% if (slides.length) { %>
+      <div class="e-hero__slides" data-photo data-parallax>
+        <% slides.forEach((s, i) => { %>
+          <img class="e-slide<%= i === 0 ? ' is-active' : '' %>" <%= i === 0 ? 'src' : 'data-src' %>="<%= s.image %>" alt="<%= i === 0 ? settings.brandName + ' ' + settings.brandSub : '' %>" style="object-position: <%= FOCUS[s.focus] || FOCUS.center %>"<%- i === 0 ? ' fetchpriority="high"' : ' decoding="async"' %> />
+        <% }) %>
+      </div>
+    <% } else { %>
+      <div class="e-hero__field" data-photo><span aria-hidden="true"><%= settings.logoLetter || "A" %></span></div>
+    <% } %>
+  </div>
+  <% if (slides.length > 1) { %>
+  <div class="e-wrap e-slider-nav" role="group" aria-label="Background photos" style="--slide-time: <%= secs %>s">
+    <span class="e-slider-nav__count" aria-hidden="true"><b data-slide-now>01</b> / <%= String(slides.length).padStart(2, '0') %></span>
+    <% slides.forEach((s, i) => { %>
+      <button type="button" class="e-slider-nav__dot<%= i === 0 ? ' is-active' : '' %>" data-slide-to="<%= i %>" aria-label="Show photo <%= i + 1 %> of <%= slides.length %>"<%- i === 0 ? ' aria-current="true"' : '' %>><i></i></button>
+    <% }) %>
+    <button type="button" class="e-slider-nav__pause" data-slide-pause aria-label="Pause slideshow"><span aria-hidden="true">Pause</span></button>
+  </div>
+  <% } %>
+  <div class="e-wrap e-hero__inner">
+    <div class="e-hero__meta">
+      <% if (d.eyebrow) { %><span><%= d.eyebrow %></span><% } %>
+      <% if (d.badge) { %><span><%= d.badge %></span><% } %>
+    </div>
+    <h1 class="e-hero__title"><span class="e-hero__l1"><%= d.title %></span><% if (d.highlight) { %> <em class="e-hero__l2"><%= d.highlight %></em><% } %></h1>
+    <div class="e-hero__foot">
+      <% if (d.lead) { %><p class="e-hero__lead lead"><%= d.lead %></p><% } %>
+      <div class="e-hero__cta">
+        <%- include('../partials/button', { label: d.btnLabel, url: d.btnUrl, cls: 'e-btn e-btn--blush' }) %>
+        <%- include('../partials/button', { label: d.btn2Label, url: d.btn2Url, cls: 'e-link e-link--light' }) %>
+      </div>
+    </div>
+  </div>
+  <% if (d.stats && d.stats.length) { %>
+  <div class="e-stats">
+    <div class="e-wrap e-stats__row" data-stagger>
+      <% d.stats.forEach(s => { %>
+        <div class="e-stat"><b><strong data-count="<%= s.value %>">0</strong><%= s.suffix %></b><span><%= s.label %></span></div>
+      <% }) %>
+    </div>
+  </div>
+  <% } %>
+</section>

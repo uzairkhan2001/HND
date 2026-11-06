@@ -1,0 +1,10 @@
+<section class="e-sec e-faq" id="<%= section.anchor %>">
+  <div class="e-wrap e-faq__grid">
+    <div class="e-faq__head"><%- include('../partials/heading', { d, num }) %></div>
+    <div class="e-faq__list" data-stagger>
+      <% (d.items || []).forEach((f, i) => { %>
+      <details<%= i === 0 ? ' open' : '' %>><summary><span><%= f.q %></span><i aria-hidden="true"></i></summary><p><%= f.a %></p></details>
+      <% }) %>
+    </div>
+  </div>
+</section>

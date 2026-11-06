@@ -1,0 +1,10 @@
+<section class="e-sec e-steps" id="<%= section.anchor %>">
+  <div class="e-wrap">
+    <div class="e-head"><%- include('../partials/heading', { d, num }) %></div>
+    <ol class="e-steps__row" data-stagger>
+      <% (d.items || []).forEach((s, i) => { %>
+      <li class="e-step"><span class="e-step__n"><%= i + 1 %></span><h3><%= s.title %></h3><p><%= s.text %></p></li>
+      <% }) %>
+    </ol>
+  </div>
+</section>
